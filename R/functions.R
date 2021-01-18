@@ -50,3 +50,4 @@ intervalosbootstrap<-function(x,y){clboot<-rep(0,length(x))
                                                          clboot[i]<-unname(quantile(bootmu,0.025))}
                                                          return(list('cl'=clboot, 'cup'=cupboot))}
 
+a
