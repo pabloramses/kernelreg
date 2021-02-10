@@ -1,0 +1,19 @@
+library(locfit)
+data <- data(ethanol)
+
+##REGRESION KERNEL####
+#Núcleos
+Gauss<-function(x){(1/sqrt(2*pi))*exp((-x^2)/2)}
+Naive<-function(x){rep(0.5,length(x))*(abs(x)<1)}
+Triang<-function(x) {1-abs(x)}
+Epane<-function(x) {(3/4)*(1-x^2)}
+Biw<-function(x) {(15/16)*(1-x^2)^2}
+triw<-function(x) {(35/32)*(1-x^2)^3}
+cosen<-function(x) {(pi/4)*cos((pi/2)*x)}
+#Ker
+RegKer<-function(x,X,Y,Ker,h){rk<-rep(0,length(x))
+                              for (i in 1:length(x)){rk[i]<-(sum(Ker((x[i]-X)/h)*Y))/(sum(Ker((x[i]-X)/h)))}
+                              return(rk)}
+ecm<-function(pred, real){mean((pred-real)^2)}
+
+package.skeleton(name='RegKer', code_files='functions.R')

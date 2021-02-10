@@ -1,0 +1,7 @@
+library(kernelreg)
+library(locfit)
+data(ethanol)
+prediction<-RegKer(sort(ethanol$E), ethanol$E, ethanol$NOx, Gauss, 0.05)
+plot(ethanol$E,ethanol$NOx,  ylab = 'NOx', xlab = 'E', main='Ethanol')
+lines(sort(ethanol$E),prediction, col='red')
+legend('topright',legend='Predicción',col='red',lty=1)
